@@ -17,7 +17,7 @@ PINECONE_ENV = "eastus-azure"
 text_analytics_client = TextAnalyticsClient(endpoint=OPENAI_API_BASE, credential=AzureKeyCredential(OPENAI_API_KEY))
 
 # Configuración de Pinecone
-pinecone = Pinecone(api_key=pinecone_api_key)
+pinecone = Pinecone(api_key=PINECONE_API_KEY)
 
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
