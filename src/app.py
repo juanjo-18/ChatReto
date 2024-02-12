@@ -9,8 +9,8 @@ OPENAI_API_SECOND = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
 OPENAI_API_VERSION = "2023-07-01-preview"
 OPENAI_API_TYPE = "azure"
 
-PINECONE_API_KEY = "1199e2a1-68b5-4641-a3b5-1eecfb9653ea"
-PINECONE_ENV = "gcp-starter"
+PINECONE_API_KEY = "9f03d0db-e331-4f64-9a47-6e7eacc857ce"
+PINECONE_ENV = "eastus-azure"
 
 
 # Configuración de Azure Text Analytics
