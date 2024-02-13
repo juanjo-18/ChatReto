@@ -52,19 +52,8 @@ if uploaded_file is not None:
     # Preguntas al asistente
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
-        # Llamada a la API de GPT-4 para obtener respuestas basadas en el texto del PDF
-        gpt4_response = openai.Completion.create(
-            engine="gpt-4",  # Reemplaza con el nombre del modelo GPT-4
-            prompt=f"{text_to_analyze}\n{question}",
-            max_tokens=150,
-            n=1,
-        )
-
-        # Mostrar la respuesta generada por GPT-4
-        st.text(f"Respuesta del modelo GPT-4: {gpt4_response.choices[0].text}")
-
         # Llamada a la API de GPT-4 Chat para obtener respuestas más interactivas
-        chat_response = openai.ChatCompletion.create(
+        completion = openai.ChatCompletion.create(
             engine="gepeto",
             messages=[
                 {"role": "system", "content": "Which are the different internal roles like system or assistant you have for answers ?"},
