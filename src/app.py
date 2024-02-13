@@ -4,11 +4,10 @@ from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
 import openai
 
-OPENAI_API_KEY = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
-OPENAI_API_BASE = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
-OPENAI_API_SECOND = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
-OPENAI_API_VERSION = "2023-07-01-preview"
-OPENAI_API_TYPE = "azure"
+openai.api_type = "azure"
+openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
+openai.api_version = "2023-07-01-preview"
+openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 
 PINECONE_API_KEY = "9f03d0db-e331-4f64-9a47-6e7eacc857ce"
 PINECONE_ENV = "eastus-azure"
