@@ -32,13 +32,12 @@ def index_document(document):
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
-    with open(uploaded_file, "rb") as file:
-        pdf_reader = PyPDF2.PdfFileReader(file)
-        num_pages = pdf_reader.numPages
+    pdf_document = PyMuPDF.open(uploaded_file)
+    num_pages = pdf_document.page_count
 
-        for page_num in range(num_pages):
-            page = pdf_reader.getPage(page_num)
-            text += page.extractText()
+    for page_num in range(num_pages):
+        page = pdf_document[page_num]
+        text += page.get_text()
 
     return text
     
