@@ -9,7 +9,7 @@ openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.
 openai.api_version = "2023-07-01-preview"
 openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 
-pinecone.api_key = "9f03d0db-e331-4f64-9a47-6e7eacc857ce"
+pinecone = Pinecone(api_key="9f03d0db-e331-4f64-9a47-6e7eacc857ce")
 pinecone.environment= "eastus-azure"
 
 
@@ -17,7 +17,7 @@ pinecone.environment= "eastus-azure"
 text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential=AzureKeyCredential(openai.api_key))
 
 # Configuración de Pinecone
-pinecone = Pinecone(api_key=pinecone.api_key)
+pinecone = Pinecone(api_key=pinecone)
 
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
