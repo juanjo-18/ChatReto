@@ -57,7 +57,7 @@ if uploaded_file is not None:
     if st.button("Obtener respuesta"):
         # Llamada a la API de GPT-4 para obtener respuestas basadas en el texto del PDF
         response = openai.Completion.create(
-            engine="text-davinci-003",  # Reemplaza con el nombre del modelo GPT-4
+            engine="gpt-4",  # Reemplaza con el nombre del modelo GPT-4
             prompt=f"{text_to_analyze}\n{question}",
             max_tokens=150,
             n=1,
