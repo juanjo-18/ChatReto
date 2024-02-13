@@ -5,7 +5,7 @@ from pinecone import Pinecone
 import openai
 
 OPENAI_API_KEY = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
-OPENAI_API_BASE = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com"
+OPENAI_API_BASE = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
 OPENAI_API_SECOND = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
 OPENAI_API_VERSION = "2023-07-01-preview"
 OPENAI_API_TYPE = "azure"
