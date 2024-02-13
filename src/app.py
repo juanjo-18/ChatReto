@@ -20,9 +20,6 @@ text_analytics_client = TextAnalyticsClient(endpoint=OPENAI_API_BASE, credential
 # Configuración de Pinecone
 pinecone = Pinecone(api_key=PINECONE_API_KEY)
 
-# Configuración de OpenAI GPT-4
-openai.api_key = 'TU_CLAVE_OPENAI'
-
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
     response = text_analytics_client.analyze_sentiment(documents=[{"id": "1", "language": "es", "text": text}])
@@ -56,7 +53,7 @@ if uploaded_file is not None:
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
         # Llamada a la API de GPT-4 para obtener respuestas basadas en el texto del PDF
-        response = openai.Completion.create(
+        gpt4_response = openai.Completion.create(
             engine="gpt-4",  # Reemplaza con el nombre del modelo GPT-4
             prompt=f"{text_to_analyze}\n{question}",
             max_tokens=150,
@@ -64,4 +61,23 @@ if uploaded_file is not None:
         )
 
         # Mostrar la respuesta generada por GPT-4
-        st.text(f"Respuesta del modelo GPT-4: {response.choices[0].text}")
+        st.text(f"Respuesta del modelo GPT-4: {gpt4_response.choices[0].text}")
+
+        # Llamada a la API de GPT-4 Chat para obtener respuestas más interactivas
+        chat_response = openai.ChatCompletion.create(
+            engine="gepeto",
+            messages=[
+                {"role": "system", "content": "Which are the different internal roles like system or assistant you have for answers ?"},
+                {"role": "user", "content": question},
+                {"role": "assistant", "content": gpt4_response.choices[0].text}
+            ],
+            temperature=0.7,
+            max_tokens=800,
+            top_p=0.95,
+            frequency_penalty=0,
+            presence_penalty=0,
+            stop=None
+        )
+
+        # Mostrar la respuesta generada por GPT-4 Chat
+        st.text(f"Respuesta del modelo GPT-4 Chat: {chat_response.choices[0].text}")
