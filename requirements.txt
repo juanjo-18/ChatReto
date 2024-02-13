@@ -6,4 +6,4 @@ azure-ai-textanalytics
 pinecone-client
 openai
 fitz
-PyMuPDF
+pymupdf
