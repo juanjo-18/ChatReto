@@ -2,6 +2,7 @@ import streamlit as st
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
+import openai
 
 OPENAI_API_KEY = "4fdaeb2a8fda4d9a9c4d2f95a5f52b54"
 OPENAI_API_BASE = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com"
@@ -18,6 +19,9 @@ text_analytics_client = TextAnalyticsClient(endpoint=OPENAI_API_BASE, credential
 
 # Configuración de Pinecone
 pinecone = Pinecone(api_key=PINECONE_API_KEY)
+
+# Configuración de OpenAI GPT-4
+openai.api_key = 'TU_CLAVE_OPENAI'
 
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
@@ -51,6 +55,13 @@ if uploaded_file is not None:
     # Preguntas al asistente
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
-        # Realiza la búsqueda en Pinecone utilizando la pregunta y muestra la respuesta.
-        # También puedes utilizar el modelo de Azure OpenIA aquí para obtener respuestas basadas en el texto del PDF.
-        st.text("Respuesta: Aquí debería estar la respuesta basada en el modelo y Pinecone.")
+        # Llamada a la API de GPT-4 para obtener respuestas basadas en el texto del PDF
+        response = openai.Completion.create(
+            engine="text-davinci-003",  # Reemplaza con el nombre del modelo GPT-4
+            prompt=f"{text_to_analyze}\n{question}",
+            max_tokens=150,
+            n=1,
+        )
+
+        # Mostrar la respuesta generada por GPT-4
+        st.text(f"Respuesta del modelo GPT-4: {response.choices[0].text}")
