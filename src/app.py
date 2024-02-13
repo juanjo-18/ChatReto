@@ -19,6 +19,7 @@ text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential
 # Configuración de Pinecone
 pinecone = Pinecone(api_key=pinecone)
 
+
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
     response = text_analytics_client.analyze_sentiment(documents=[{"id": "1", "language": "es", "text": text}])
@@ -36,12 +37,11 @@ uploaded_file = st.file_uploader("Sube un archivo PDF", type=["pdf"])
 if uploaded_file is not None:
     st.text("Archivo cargado con éxito.")
 
-    # Procesar el PDF y extraer texto (puedes usar bibliotecas como PyMuPDF para esto)
-    # Luego, utiliza Azure Text Analytics para analizar el texto y Pinecone para indexar el documento.
+    # Procesar el PDF y extraer texto (usando bibliotecas como PyMuPDF)
+    pdf_text = extract_text_from_pdf(uploaded_file)  # Reemplaza con tu propia lógica de extracción de texto desde PDF
 
     # Ejemplo de análisis de texto con Azure Text Analytics
-    text_to_analyze = "Texto extraído del PDF"
-    sentiment = analyze_text(text_to_analyze)
+    sentiment = analyze_text(pdf_text)
     st.text(f"Sentimiento del texto: {sentiment}")
 
     # Ejemplo de indexación con Pinecone
