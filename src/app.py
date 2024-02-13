@@ -3,7 +3,7 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
 import openai
-import fitz as PyMuPDF
+import fitz
 
 openai.api_type = "azure"
 openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
@@ -32,7 +32,7 @@ def index_document(document):
 
 def extract_text_from_pdf(uploaded_file):
     text = ""
-    pdf_document = PyMuPDF.open(uploaded_file)
+    pdf_document = fitz.open(uploaded_file)
     num_pages = pdf_document.page_count
 
     for page_num in range(num_pages):
