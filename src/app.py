@@ -9,15 +9,15 @@ openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.
 openai.api_version = "2023-07-01-preview"
 openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 
-PINECONE.API_KEY = "9f03d0db-e331-4f64-9a47-6e7eacc857ce"
-PINECONE.ENV = "eastus-azure"
+pinecone.api_key = "9f03d0db-e331-4f64-9a47-6e7eacc857ce"
+pinecone.environment= "eastus-azure"
 
 
 # Configuración de Azure Text Analytics
 text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential=AzureKeyCredential(openai.api_key))
 
 # Configuración de Pinecone
-pinecone = Pinecone(api_key=PINECONE.API_KEY)
+pinecone = Pinecone(api_key=pinecone.api_key)
 
 # Función para analizar texto con Azure Text Analytics
 def analyze_text(text):
@@ -26,7 +26,7 @@ def analyze_text(text):
 
 # Función para indexar un documento en Pinecone
 def index_document(document):
-    pinecone.index(index_name=PINECONE.ENV, ids=[document["id"]], vectors=[document["vector"]])
+    pinecone.index(index_name=pinecone.environment, ids=[document["id"]], vectors=[document["vector"]])
 
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
