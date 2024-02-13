@@ -1,9 +1,10 @@
 import streamlit as st
+import pdfplumber
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
 import openai
-import pdfplumber
+
 
 openai.api_type = "azure"
 openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
