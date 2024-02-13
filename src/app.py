@@ -80,4 +80,4 @@ if uploaded_file is not None:
         )
 
         # Mostrar la respuesta generada por GPT-4 Chat
-        st.text(f"Respuesta del modelo GPT-4 Chat: {chat_response.choices[0].text}")
+        st.text(f"Respuesta del modelo GPT-4 Chat: {completion.choices[0].message.content}")
