@@ -3,6 +3,8 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
 import openai
+import PyMuPDF
+
 
 openai.api_type = "azure"
 openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.com/"
@@ -29,6 +31,13 @@ def analyze_text(text):
 def index_document(document):
     pinecone.index(index_name=pinecone.environment, ids=[document["id"]], vectors=[document["vector"]])
 
+def extract_text_from_pdf(uploaded_file):
+    pdf_document = PyMuPDF.PdfReader(uploaded_file)
+    text = ""
+    for page_num in range(len(pdf_document.pages)):
+        text += pdf_document.pages[page_num].text
+    return text
+    
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
 
