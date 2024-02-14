@@ -31,12 +31,7 @@ if use_serverless:
 else:
     spec = PodSpec(environment="us-west-2")
     
-pinecone.create_index(
-        index_name,
-        dimension=1536,  # dimensionality of text-embedding-ada-002
-        metric='dotproduct',
-        spec=spec
-    )
+-
     
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
