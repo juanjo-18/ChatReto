@@ -26,6 +26,10 @@ try:
     pinecone = Pinecone(api_key=pinecone)
 
     use_serverless = os.environ.get("USE_SERVERLESS", "False").lower() == "true"
+    if use_serverless:
+        spec = ServerlessSpec(cloud='aws', region='us-west-2')
+    else:
+        spec = PodSpec(environment="us-west-2")
 except Exception as e:
     print(f"Error creating Pinecone instance: {e}")
 
