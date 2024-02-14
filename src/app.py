@@ -67,17 +67,17 @@ if uploaded_file is not None:
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
         # Llamada a la API de GPT-4 Chat para obtener respuestas más interactivas
-        message_text = [{"role":"system","content":"quien eres"}]
-
+        # Setting the API key
+        openai.api_key = os.getenv("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
+      
+        # Create a chatbot using ChatCompletion.create() function
         completion = openai.ChatCompletion.create(
-          engine="gepeto",
-          messages = message_text,
-          temperature=0.7,
-          max_tokens=800,
-          top_p=0.95,
-          frequency_penalty=0,
-          presence_penalty=0,
-          stop=None
+              # Use GPT 3.5 as the LLM
+              model="gepeto",
+              # Pre-define conversation messages for the possible roles
+              messages=[
+                {"role": "system", "content": question}
+              ]
         )
 
         # Mostrar la respuesta generada por GPT-4 Chat
