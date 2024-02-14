@@ -24,7 +24,7 @@ text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential
 # Configuración de Pinecone
 pinecone = Pinecone(api_key=pinecone)
 
-
+use_serverless = os.environ.get("USE_SERVERLESS", "False").lower() == "true"
 if use_serverless:
     spec = ServerlessSpec(cloud='aws', region='us-west-2')
 else:
