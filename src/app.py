@@ -50,7 +50,7 @@ if uploaded_file is not None:
     st.text("Archivo cargado con éxito.")
     if uploaded_file is not None:
         print(uploaded_file.read())  # Imprime el contenido del archivo (puede ser largo)
-        loader = PyPDFLoader(uploaded_file)
+        #loader = PyPDFLoader(uploaded_file)
 
     file_content = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(
