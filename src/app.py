@@ -19,8 +19,13 @@ openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.
 openai.api_version = "2023-07-01-preview"
 openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 
-pinecone = Pinecone(api_key="534ed83e-8886-4b39-ad9b-6711c55de92b")
-pinecone.environment= "us-west-2"
+try:
+    pinecone = Pinecone(api_key="534ed83e-8886-4b39-ad9b-6711c55de92b")
+    pinecone.environment= "us-west-2"
+except Exception as e:
+    print(f"Error creating Pinecone instance: {e}")
+
+
 
 
 # Configuración de Azure Text Analytics
