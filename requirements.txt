@@ -6,3 +6,4 @@ azure-ai-textanalytics
 pinecone-client
 openai
 pdfplumber
+langchain
