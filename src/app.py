@@ -40,12 +40,7 @@ except Exception as e:
 text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential=AzureKeyCredential(openai.api_key))
 
 
-if use_serverless:
-    spec = ServerlessSpec(cloud='aws', region='us-west-2')
-else:
-    spec = PodSpec(environment="us-west-2")
-    
-    
+
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
 
