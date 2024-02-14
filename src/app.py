@@ -69,7 +69,7 @@ if uploaded_file is not None:
         # Llamada a la API de GPT-4 Chat para obtener respuestas más interactivas
         message_text = [{"role":"system","content":question}]
 
-       completion = openai.ChatCompletion.create(
+        completion = openai.ChatCompletion.create(
           engine="gepeto",
           messages = message_text,
           temperature=0.7,
