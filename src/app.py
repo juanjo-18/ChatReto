@@ -31,7 +31,6 @@ if use_serverless:
 else:
     spec = PodSpec(environment="us-west-2")
     
--
     
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
