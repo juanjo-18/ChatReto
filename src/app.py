@@ -22,6 +22,10 @@ openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 try:
     pinecone = Pinecone(api_key="534ed83e-8886-4b39-ad9b-6711c55de92b")
     pinecone.environment= "us-west-2"
+    # Configuración de Pinecone
+    pinecone = Pinecone(api_key=pinecone)
+
+    use_serverless = os.environ.get("USE_SERVERLESS", "False").lower() == "true"
 except Exception as e:
     print(f"Error creating Pinecone instance: {e}")
 
@@ -31,10 +35,7 @@ except Exception as e:
 # Configuración de Azure Text Analytics
 text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential=AzureKeyCredential(openai.api_key))
 
-# Configuración de Pinecone
-pinecone = Pinecone(api_key=pinecone)
 
-use_serverless = os.environ.get("USE_SERVERLESS", "False").lower() == "true"
 if use_serverless:
     spec = ServerlessSpec(cloud='aws', region='us-west-2')
 else:
