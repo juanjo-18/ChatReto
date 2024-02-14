@@ -69,16 +69,16 @@ if uploaded_file is not None:
         # Llamada a la API de GPT-4 Chat para obtener respuestas más interactivas
         message_text = [{"role":"system","content":question}]
 
-        completion = openai.ChatCompletion.create(
-              engine="gepeto",
-              messages = message_text,
-              temperature=0.7,
-              max_tokens=800,
-              top_p=0.95,
-              frequency_penalty=0,
-              presence_penalty=0,
-              stop=None
+       completion = openai.ChatCompletion.create(
+          engine="gepeto",
+          messages = message_text,
+          temperature=0.7,
+          max_tokens=800,
+          top_p=0.95,
+          frequency_penalty=0,
+          presence_penalty=0,
+          stop=None
         )
 
         # Mostrar la respuesta generada por GPT-4 Chat
-        st.text(f"Respuesta del modelo GPT-4 Chat: {completion.choices[0].message.content}")
+        st.text(f"Respuesta del chat: {completion.choices[0].message.content}")
