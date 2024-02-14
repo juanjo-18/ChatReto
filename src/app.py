@@ -51,8 +51,8 @@ if uploaded_file is not None:
     if uploaded_file is not None:
         print(uploaded_file.read())  # Imprime el contenido del archivo (puede ser largo)
         #loader = PyPDFLoader(uploaded_file)
-
-    file_content = loader.load()
+        #file_content = loader.load()
+    
     text_splitter = RecursiveCharacterTextSplitter(
         # Set a really small chunk size, just to show.
         chunk_size = 2000,
