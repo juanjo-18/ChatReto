@@ -1,5 +1,4 @@
 import streamlit as st
-import pdfplumber
 import os
 from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
