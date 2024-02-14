@@ -5,6 +5,6 @@ scikit-learn==1.2.2
 azure-ai-textanalytics
 pinecone-client
 openai
-pdfplumber
+pypdf
 langchain
 langchain-community
