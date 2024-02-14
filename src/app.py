@@ -60,7 +60,9 @@ if uploaded_file is not None:
         length_function = len,
     )
 
-    book_texts = text_splitter.split_documents(file_content)
+    #book_texts = text_splitter.split_documents(file_content)
+
+    
     # Preguntas al asistente
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
