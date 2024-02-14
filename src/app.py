@@ -48,7 +48,10 @@ uploaded_file = st.file_uploader("Sube un archivo PDF", type=["pdf"])
 
 if uploaded_file is not None:
     st.text("Archivo cargado con éxito.")
-    loader = PyPDFLoader(uploaded_file)
+    if uploaded_file is not None:
+        print(uploaded_file.read())  # Imprime el contenido del archivo (puede ser largo)
+        loader = PyPDFLoader(uploaded_file)
+
     file_content = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(
         # Set a really small chunk size, just to show.
