@@ -7,6 +7,11 @@ from pinecone import Pinecone
 import openai
 from pinecone import ServerlessSpec, PodSpec
 from langchain.document_loaders import UnstructuredPDFLoader, OnlinePDFLoader, PyPDFLoader
+import openai, langchain, pinecone
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import Pinecone
+from langchain.llms import OpenAI
 
 
 
