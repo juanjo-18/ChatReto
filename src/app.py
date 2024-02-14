@@ -11,8 +11,8 @@ openai.api_base = "https://acc-alejandria-core-openaimagesound-pro.openai.azure.
 openai.api_version = "2023-07-01-preview"
 openai.api_key = ("4fdaeb2a8fda4d9a9c4d2f95a5f52b54")
 
-pinecone = Pinecone(api_key="9f03d0db-e331-4f64-9a47-6e7eacc857ce")
-pinecone.environment= "eastus-azure"
+pinecone = Pinecone(api_key="534ed83e-8886-4b39-ad9b-6711c55de92b")
+pinecone.environment= "us-west-2"
 
 
 # Configuración de Azure Text Analytics
