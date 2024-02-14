@@ -1,5 +1,5 @@
 FROM python:3.8
-RUN pip install pandas scikit-learn==1.2.2 streamlit numpy azure-ai-textanalytics pinecone-client openai pdfplumber
+RUN pip install pandas scikit-learn==1.2.2 streamlit numpy azure-ai-textanalytics pinecone-client openai pdfplumber langchain
 COPY src/* /app/
 COPY model/hotel_model.pkl /app/model/hotel_model.pkl
 WORKDIR /app
