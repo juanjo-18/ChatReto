@@ -4,6 +4,9 @@ from azure.ai.textanalytics import TextAnalyticsClient
 from azure.core.credentials import AzureKeyCredential
 from pinecone import Pinecone
 import openai
+from pinecone import ServerlessSpec, PodSpec
+from langchain.document_loaders import UnstructuredPDFLoader, OnlinePDFLoader, PyPDFLoader
+
 
 
 openai.api_type = "azure"
@@ -22,21 +25,17 @@ text_analytics_client = TextAnalyticsClient(endpoint=openai.api_base, credential
 pinecone = Pinecone(api_key=pinecone)
 
 
-# Función para analizar texto con Azure Text Analytics
-def analyze_text(text):
-    response = text_analytics_client.analyze_sentiment(documents=[{"id": "1", "language": "es", "text": text}])
-    return response[0].sentiment
-
-# Función para indexar un documento en Pinecone
-def index_document(document):
-    pinecone.index(index_name=pinecone.environment, ids=[document["id"]], vectors=[document["vector"]])
-
-def extract_text_from_pdf(uploaded_file):
-    text = ""
-    with pdfplumber.open(uploaded_file) as pdf:
-        for page in pdf.pages:
-            text += page.extract_text()
-    return text
+if use_serverless:
+    spec = ServerlessSpec(cloud='aws', region='us-west-2')
+else:
+    spec = PodSpec(environment="us-west-2")
+    
+pinecone.create_index(
+        index_name,
+        dimension=1536,  # dimensionality of text-embedding-ada-002
+        metric='dotproduct',
+        spec=spec
+    )
     
 # Interfaz de usuario con Streamlit
 st.title("Asistente de PDF Scanner")
@@ -45,18 +44,16 @@ uploaded_file = st.file_uploader("Sube un archivo PDF", type=["pdf"])
 
 if uploaded_file is not None:
     st.text("Archivo cargado con éxito.")
+    loader = PyPDFLoader(uploaded_file)
+    file_content = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(
+        # Set a really small chunk size, just to show.
+        chunk_size = 2000,
+        chunk_overlap  = 0,
+        length_function = len,
+    )
 
-    # Procesar el PDF y extraer texto (usando bibliotecas como PyMuPDF)
-    pdf_text = extract_text_from_pdf(uploaded_file)  # Reemplaza con tu propia lógica de extracción de texto desde PDF
-
-    # Ejemplo de análisis de texto con Azure Text Analytics
-    sentiment = analyze_text(pdf_text)
-    st.text(f"Sentimiento del texto: {sentiment}")
-
-    # Ejemplo de indexación con Pinecone
-    document_to_index = {"id": "1", "vector": [0.1, 0.2, 0.3]}  # Reemplaza con tu propio vector
-    index_document(document_to_index)
-
+    book_texts = text_splitter.split_documents(file_content)
     # Preguntas al asistente
     question = st.text_input("Hazme una pregunta sobre el PDF:")
     if st.button("Obtener respuesta"):
